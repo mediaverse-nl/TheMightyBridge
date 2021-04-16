@@ -24,7 +24,7 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+#      MYSQL_USER: ${DB_USERNAME}
       SERVICE_TAGS: dev
       SERVICE_NAME: db
     volumes:
@@ -43,10 +43,18 @@ services:
       PMA_PORT: ${DB_PORT}
       PMA_USER: ${DB_USERNAME}
       PMA_PASSWORD: ${DB_PASSWORD}
+      PMA_PASSWORD: ${DB_PASSWORD}
     ports:
       - "8899:80"
     networks:
       - laravel
+
+
+  whoami:
+    # A container that exposes an API to show its IP address
+    image: traefik/whoami
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
 
   nginx:
     image: nginx:stable-alpine
@@ -54,6 +62,16 @@ services:
     restart: unless-stopped
     ports:
       - 8000:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ecom.rule=Host(`test.web-assembled.nl`)"
+      - "traefik.http.routers.ecom.entrypoints=web"
+
+#      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
+
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.ecom.rule=Host(`nginx.localhost`)"
+#      - "traefik.http.routers.nginx.entrypoints=web"
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
@@ -63,34 +81,46 @@ services:
   traefik:
     image: "traefik:v2.4"
     container_name: "traefik"
+    # Enables the web UI and tells Traefik to listen to docker
+#    command: --api.insecure=true --providers.docker
+    ports:
+      # The HTTP port
+      - "80:80"
+      - "443:443"
+      - "4000:4000"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
     command:
-      #- "--log.level=DEBUG"
+      - "--log.level=DEBUG"
       - "--api.insecure=true"
+      - "--api.dashboard=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.node.address=:4000"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      - "--certificatesresolvers.myresolver.acme.email=info@web-assembled.nl"
+      - "--certificatesresolvers.myresolver.acme.email=deveron.reniers@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
-    volumes:
-      - "./letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#    ports:
+#      - "80:80"
+#      - "8080:8080"
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-  whoami:
-    image: "traefik/whoami"
-    container_name: "simple-service"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.web-assembled.nl`)"
-      - "traefik.http.routers.whoami.entrypoints=websecure"
-      - "traefik.http.routers.whoami.tls.certresolver=myresolver"
+#  whoami:
+#    image: "traefik/whoami"
+#    container_name: "simple-service"
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+#      - "traefik.http.routers.whoami.entrypoints=web"
 
 networks:
   laravel:
