@@ -59,9 +59,14 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=Host(`test.web-assembled.nl`)"
       - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.routers.nginx-secure.rule=Host(`test.web-assembled.nl`)"
+      - "traefik.http.routers.nginx-secure.entrypoints=websecure"
+      - "traefik.http.routers.nginx-secure.tls.certresolver=myresolver"
+      - "traefik.http.routers.nginx-secure.tls=true"
+
+
 
 #      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
-
 #      - "traefik.enable=true"
 #      - "traefik.http.routers.ecom.rule=Host(`nginx.localhost`)"
 #      - "traefik.http.routers.nginx.entrypoints=web"
