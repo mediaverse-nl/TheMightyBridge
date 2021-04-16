@@ -49,13 +49,6 @@ services:
     networks:
       - laravel
 
-
-  whoami:
-    # A container that exposes an API to show its IP address
-    image: traefik/whoami
-    labels:
-      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
-
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
@@ -64,8 +57,8 @@ services:
       - 8000:80
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ecom.rule=Host(`test.web-assembled.nl`)"
-      - "traefik.http.routers.ecom.entrypoints=web"
+      - "traefik.http.routers.nginx.rule=Host(`test.web-assembled.nl`)"
+      - "traefik.http.routers.nginx.entrypoints=web"
 
 #      - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
 
@@ -89,7 +82,7 @@ services:
       - "443:443"
       - "4000:4000"
       # The Web UI (enabled by --api.insecure=true)
-      - "8080:8080"
+      - "8888:8888"
     volumes:
       # So that Traefik can listen to the Docker events
       - "./letsencrypt:/letsencrypt"
@@ -105,22 +98,9 @@ services:
       - "--entrypoints.node.address=:4000"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.email=deveron.reniers@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-#    ports:
-#      - "80:80"
-#      - "8080:8080"
-#    volumes:
-#      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-
-#  whoami:
-#    image: "traefik/whoami"
-#    container_name: "simple-service"
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
-#      - "traefik.http.routers.whoami.entrypoints=web"
 
 networks:
   laravel:
