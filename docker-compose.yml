@@ -1,6 +1,38 @@
 version: "3.7"
 services:
 #  changed
+  traefik:
+    image: "traefik:v2.4"
+    container_name: "traefik"
+    # Enables the web UI and tells Traefik to listen to docker
+    #    command: --api.insecure=true --providers.docker
+    ports:
+      # The HTTP port
+      - "8088:80"
+      - "1443:443"
+#      - "4000:4000"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8888:8888"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+#      - "--entrypoints.node.address=:4000"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.email=deveron.reniers@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+
   app:
     build:
       args:
@@ -45,7 +77,7 @@ services:
       PMA_PASSWORD: ${DB_PASSWORD}
       PMA_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "8899:80"
+      - "8899:8899"
     networks:
       - laravel
 
@@ -53,8 +85,8 @@ services:
     image: nginx:stable-alpine
     container_name: nginx
     restart: unless-stopped
-    ports:
-      - 8000:80
+#    ports:
+#      - 8000:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=Host(`test.web-assembled.nl`)"
@@ -75,37 +107,6 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     networks:
       - laravel
-
-  traefik:
-    image: "traefik:v2.4"
-    container_name: "traefik"
-    # Enables the web UI and tells Traefik to listen to docker
-#    command: --api.insecure=true --providers.docker
-    ports:
-      # The HTTP port
-      - "80:80"
-      - "1443:443"
-      - "4000:4000"
-      # The Web UI (enabled by --api.insecure=true)
-      - "8888:8888"
-    volumes:
-      # So that Traefik can listen to the Docker events
-      - "./letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    command:
-      - "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--api.dashboard=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-      - "--entrypoints.node.address=:4000"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
-      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
-      - "--certificatesresolvers.myresolver.acme.email=deveron.reniers@gmail.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
 
 networks:
   laravel:

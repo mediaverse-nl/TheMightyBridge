@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58701821-c1fd-4313-83b2-76fd6902e7de" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/TheMightyBridge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TheMightyBridge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
@@ -162,7 +164,11 @@
       <recent name="C:\Users\Dever\PhpstormProjects\TheMightyBridge\src\public" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Docker.docker-compose.yml.php: Compose Deployment">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
     <configuration name="docker-compose.yml.php: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings>
@@ -206,6 +212,7 @@
       <updated>1617797187581</updated>
       <workItem from="1617797280175" duration="29379000" />
       <workItem from="1617925808743" duration="50318000" />
+      <workItem from="1618607942581" duration="4066000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1618448524248</created>
@@ -292,10 +299,10 @@
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
     <state x="2601" y="251" key="#docker-compose.yml.php:_Compose_Deployment/0.0.5760.1080@0.0.5760.1080" timestamp="1617804412021" />
-    <state x="2472" y="116" key="CommitChangelistDialog2" timestamp="1618587077556">
+    <state x="2472" y="116" key="CommitChangelistDialog2" timestamp="1618587425643">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
-    <state x="2472" y="116" key="CommitChangelistDialog2/0.0.5760.1080@0.0.5760.1080" timestamp="1618587077556" />
+    <state x="2472" y="116" key="CommitChangelistDialog2/0.0.5760.1080@0.0.5760.1080" timestamp="1618587425643" />
     <state x="2633" y="275" key="FileChooserDialogImpl" timestamp="1618539771762">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
@@ -304,10 +311,10 @@
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
     <state x="2712" y="413" key="Github.ShareDialog/0.0.5760.1080@0.0.5760.1080" timestamp="1618448607395" />
-    <state x="2445" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618587084478">
+    <state x="2445" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618587427681">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
-    <state x="2445" y="253" key="Vcs.Push.Dialog.v2/0.0.5760.1080@0.0.5760.1080" timestamp="1618587084478" />
+    <state x="2445" y="253" key="Vcs.Push.Dialog.v2/0.0.5760.1080@0.0.5760.1080" timestamp="1618587427681" />
     <state x="2662" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618448570003">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
