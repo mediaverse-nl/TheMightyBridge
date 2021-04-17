@@ -210,7 +210,7 @@
       <updated>1617797187581</updated>
       <workItem from="1617797280175" duration="29379000" />
       <workItem from="1617925808743" duration="50318000" />
-      <workItem from="1618607942581" duration="10961000" />
+      <workItem from="1618607942581" duration="11838000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1618448524248</created>
@@ -289,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618679068876</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="first commit whoami">
+      <created>1618680768233</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1618680768233</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,10 +326,10 @@
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
     <state x="2601" y="251" key="#docker-compose.yml.php:_Compose_Deployment/0.0.5760.1080@0.0.5760.1080" timestamp="1617804412021" />
-    <state x="2472" y="116" key="CommitChangelistDialog2" timestamp="1618679068485">
+    <state x="2472" y="116" key="CommitChangelistDialog2" timestamp="1618680767828">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
-    <state x="2472" y="116" key="CommitChangelistDialog2/0.0.5760.1080@0.0.5760.1080" timestamp="1618679068485" />
+    <state x="2472" y="116" key="CommitChangelistDialog2/0.0.5760.1080@0.0.5760.1080" timestamp="1618680767828" />
     <state x="2633" y="275" key="FileChooserDialogImpl" timestamp="1618539771762">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
@@ -331,10 +338,10 @@
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
     <state x="2712" y="413" key="Github.ShareDialog/0.0.5760.1080@0.0.5760.1080" timestamp="1618448607395" />
-    <state x="2445" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618679071793">
+    <state x="2445" y="253" key="Vcs.Push.Dialog.v2" timestamp="1618680771457">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
-    <state x="2445" y="253" key="Vcs.Push.Dialog.v2/0.0.5760.1080@0.0.5760.1080" timestamp="1618679071793" />
+    <state x="2445" y="253" key="Vcs.Push.Dialog.v2/0.0.5760.1080@0.0.5760.1080" timestamp="1618680771457" />
     <state x="2662" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618448570003">
       <screen x="0" y="0" width="5760" height="1080" />
     </state>
