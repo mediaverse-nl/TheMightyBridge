@@ -1,0 +1,1 @@
+* * * * * php /src/artisan schedule:run >> /dev/stdout 2>&1
