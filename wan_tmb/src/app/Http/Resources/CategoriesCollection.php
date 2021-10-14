@@ -1,10 +1,10 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class {{ class }} extends ResourceCollection
+class CategoriesCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,6 @@ class {{ class }} extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return ['data' => $this->collection];
     }
 }
